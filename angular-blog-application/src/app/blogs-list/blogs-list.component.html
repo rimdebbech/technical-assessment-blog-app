@@ -1,0 +1,29 @@
+<mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Search" #input>
+</mat-form-field>
+
+<mat-grid-list *ngIf="this.dataSource?.filteredData" cols="2" rowHeight="2:1">
+    <mat-grid-tile *ngFor="let blog of this.dataSource.filteredData">
+        <mat-card class="example-card"
+                  [ngStyle]="{'border':( blog.upvote < blog.downvote ) ? '4px solid red' : '4px solid green'}">
+            <mat-card-header>
+                <mat-card-title>Title: {{blog.title}}</mat-card-title>
+                <mat-card-subtitle>Author: {{blog.author}}</mat-card-subtitle>
+            </mat-card-header>
+            
+            <mat-card-content>
+                <p>
+                    Content: <br>
+                    {{blog.content | slice:0:80 }} ...
+                </p>
+                
+            </mat-card-content>
+            <mat-card-actions>
+                <a mat-button color="warn" [routerLink]="['/blogsDetails', blog.id ]">Continue reading</a>
+                <button mat-raised-button color="primary" (click)="upvote(blog)">Upvote</button>
+                <button mat-raised-button color="warn" (click)="downvote(blog)">Downvote</button>
+            </mat-card-actions>
+        </mat-card>
+    </mat-grid-tile>
+</mat-grid-list>

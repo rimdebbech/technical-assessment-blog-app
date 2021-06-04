@@ -1,0 +1,12 @@
+.example-button-row {
+    display: table-cell;
+    width: 490px;
+
+    margin-left: 40px;
+    min-width: 120px;
+  }
+
+  .example-button-row .mat-button-base {
+    margin: 8px 40px 8px 0;
+  }
+
